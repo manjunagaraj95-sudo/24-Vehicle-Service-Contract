@@ -62,19 +62,19 @@ const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(() => {
-        const storedUser = localStorage.getItem('currentUser');
+        const storedUser = localStorage.getItem('currentUser?.role');
         return storedUser ? JSON.parse(storedUser) : null;
     });
 
     const login = (role) => {
         const newUser = { role };
         setUser(newUser);
-        localStorage.setItem('currentUser', JSON.stringify(newUser));
+        localStorage.setItem('currentUser?.role', JSON.stringify(newUser));
     };
 
     const logout = () => {
         setUser(null);
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('currentUser?.role');
     };
 
     const canAccess = (feature, action = 'canView', record = null) => {
